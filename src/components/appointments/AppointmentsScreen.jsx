@@ -1,14 +1,31 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { CalendarPlus, Video, MapPin, Clock, Calendar, ChevronRight, CheckCircle, AlertCircle, XCircle } from 'lucide-react';
+import { 
+  CalendarPlus, 
+  Video, 
+  MapPin, 
+  Clock, 
+  Calendar, 
+  ChevronRight, 
+  CheckCircle, 
+  AlertCircle, 
+  XCircle,
+  RefreshCw,
+  FileText,
+  ShieldCheck,
+  Stethoscope,
+  HeartHandshake
+} from 'lucide-react';
 
 export const AppointmentsScreen = () => {
   const { appointments, currentKid, openModal } = useApp();
-  const [selectedFilter, setSelectedFilter] = useState('UPCOMING'); // 'UPCOMING' | 'COMPLETED' | 'CANCELLED'
+  const [selectedFilter, setSelectedFilter] = useState('UPCOMING'); // 'UPCOMING' | 'FOLLOW-UP' | 'COMPLETED' | 'CANCELLED'
 
   const filteredAppointments = appointments.filter(apt => {
     return apt.type === selectedFilter && (apt.kidId === currentKid.id || selectedFilter !== 'UPCOMING');
   });
+
+  const followUpCount = appointments.filter(apt => apt.type === 'FOLLOW-UP' && apt.kidId === currentKid.id).length;
 
   return (
     <div className="screen-scroll-container">
@@ -22,7 +39,7 @@ export const AppointmentsScreen = () => {
           <div>
             <h2 style={{ fontSize: '20px', fontWeight: '800' }}>Doctor Appointments</h2>
             <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.85)' }}>
-              Consultations with Dr. Ila B for {currentKid.name}
+              Consultations & Clinical Follow-ups with Dr. Ila B
             </p>
           </div>
 
@@ -35,43 +52,83 @@ export const AppointmentsScreen = () => {
           </button>
         </div>
 
-        {/* Filter Segmented Control */}
+        {/* 4 Filter Tabs: UPCOMING | FOLLOW-UP | COMPLETED | CANCELLED */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateColumns: 'repeat(4, 1fr)',
           background: 'rgba(0,0,0,0.25)',
           padding: '4px',
           borderRadius: '16px',
-          backdropFilter: 'blur(8px)'
+          backdropFilter: 'blur(8px)',
+          gap: '2px'
         }}>
-          {['UPCOMING', 'COMPLETED', 'CANCELLED'].map((tab) => {
+          {['UPCOMING', 'FOLLOW-UP', 'COMPLETED', 'CANCELLED'].map((tab) => {
             const isActive = selectedFilter === tab;
             return (
               <button
                 key={tab}
                 onClick={() => setSelectedFilter(tab)}
                 style={{
-                  padding: '8px',
+                  padding: '8px 4px',
                   border: 'none',
                   borderRadius: '12px',
                   background: isActive ? '#FFFFFF' : 'transparent',
                   color: isActive ? '#056DB4' : 'rgba(255,255,255,0.85)',
                   fontWeight: isActive ? '800' : '600',
-                  fontSize: '11.5px',
+                  fontSize: '11px',
                   cursor: 'pointer',
                   transition: 'all 0.2s ease',
-                  textTransform: 'capitalize'
+                  textTransform: 'capitalize',
+                  textAlign: 'center',
+                  position: 'relative'
                 }}
               >
-                {tab.toLowerCase()}
+                {tab === 'FOLLOW-UP' ? 'Follow-up' : tab.toLowerCase()}
+                {tab === 'FOLLOW-UP' && followUpCount > 0 && !isActive && (
+                  <span style={{
+                    position: 'absolute',
+                    top: '2px',
+                    right: '4px',
+                    width: '6px',
+                    height: '6px',
+                    borderRadius: '50%',
+                    background: '#53BF9D'
+                  }} />
+                )}
               </button>
             );
           })}
         </div>
       </div>
 
-      {/* Appointment Cards Stream */}
-      <div style={{ padding: '16px 18px' }}>
+      {/* Main Content Stream */}
+      <div style={{ padding: '16px 18px 40px' }}>
+        {/* Dedicated Follow-up Pediatric Recommendation Banner */}
+        {selectedFilter === 'FOLLOW-UP' && (
+          <div style={{
+            background: 'linear-gradient(135deg, #ECFDF5 0%, #E0F2FE 100%)',
+            borderRadius: '18px',
+            padding: '14px 16px',
+            border: '1px solid #BAE6FD',
+            marginBottom: '16px',
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: '12px'
+          }}>
+            <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#53BF9D', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <HeartHandshake size={20} />
+            </div>
+            <div>
+              <h4 style={{ fontSize: '13.5px', fontWeight: '800', color: '#012741' }}>
+                Doctor Recommended Follow-up Care
+              </h4>
+              <p style={{ fontSize: '11.5px', color: '#475569', marginTop: '3px', lineHeight: 1.4 }}>
+                Dr. Ila B advises a follow-up review 5 days after initiating prescription courses or vaccinations to verify complete recovery and vitals.
+              </p>
+            </div>
+          </div>
+        )}
+
         {filteredAppointments.length === 0 ? (
           <div style={{
             background: '#FFFFFF',
@@ -83,10 +140,12 @@ export const AppointmentsScreen = () => {
           }}>
             <Calendar size={36} color="#94A3B8" style={{ margin: '0 auto 10px' }} />
             <h4 style={{ fontSize: '15px', fontWeight: '700', color: '#012741' }}>
-              No {selectedFilter.toLowerCase()} appointments
+              No {selectedFilter === 'FOLLOW-UP' ? 'pending follow-ups' : `${selectedFilter.toLowerCase()} appointments`}
             </h4>
             <p style={{ fontSize: '12px', color: '#64748B', marginTop: '4px', marginBottom: '16px' }}>
-              Schedule a pediatric visit or routine checkup with Dr. Ila B.
+              {selectedFilter === 'FOLLOW-UP' 
+                ? 'All recovery reviews for your child are currently up to date.'
+                : 'Schedule a pediatric visit or routine checkup with Dr. Ila B.'}
             </p>
             <button
               onClick={() => openModal('new-appointment')}
@@ -100,6 +159,7 @@ export const AppointmentsScreen = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             {filteredAppointments.map((apt) => {
               const isUpcoming = apt.type === 'UPCOMING';
+              const isFollowUp = apt.type === 'FOLLOW-UP';
               const isCompleted = apt.type === 'COMPLETED';
 
               return (
@@ -109,7 +169,7 @@ export const AppointmentsScreen = () => {
                     background: '#FFFFFF',
                     borderRadius: '22px',
                     padding: '16px',
-                    border: '1px solid #EEF2F6',
+                    border: isFollowUp ? '1.5px solid #53BF9D' : '1px solid #EEF2F6',
                     boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
                     display: 'flex',
                     flexDirection: 'column',
@@ -143,10 +203,10 @@ export const AppointmentsScreen = () => {
                     <span style={{
                       fontSize: '11px',
                       fontWeight: '800',
-                      padding: '3px 8px',
+                      padding: '4px 10px',
                       borderRadius: '10px',
-                      background: isUpcoming ? '#E8F8F3' : isCompleted ? '#EBF4FA' : '#FDE8EC',
-                      color: isUpcoming ? '#3AA17E' : isCompleted ? '#056DB4' : '#F94C66'
+                      background: isUpcoming ? '#E8F8F3' : isFollowUp ? '#EBF4FA' : isCompleted ? '#F1F5F9' : '#FDE8EC',
+                      color: isUpcoming ? '#3AA17E' : isFollowUp ? '#056DB4' : isCompleted ? '#334155' : '#F94C66'
                     }}>
                       {apt.status}
                     </span>
@@ -174,6 +234,32 @@ export const AppointmentsScreen = () => {
                     </div>
                   </div>
 
+                  {/* Follow-up Specific Details */}
+                  {isFollowUp && (
+                    <div style={{
+                      background: '#FAF9F7',
+                      borderRadius: '12px',
+                      padding: '10px 12px',
+                      fontSize: '11.5px',
+                      color: '#475569',
+                      border: '1px solid #F1F5F9',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '4px'
+                    }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span style={{ color: '#64748B' }}>Follow-up Goal:</span>
+                        <strong style={{ color: '#012741' }}>{apt.notes}</strong>
+                      </div>
+                      {apt.followUpDueWindow && (
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                          <span style={{ color: '#64748B' }}>Timeline Window:</span>
+                          <strong style={{ color: '#056DB4' }}>{apt.followUpDueWindow}</strong>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   {/* Symptoms list */}
                   {apt.symptoms && apt.symptoms.length > 0 && (
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
@@ -192,7 +278,7 @@ export const AppointmentsScreen = () => {
                     </div>
                   )}
 
-                  {/* Actions */}
+                  {/* Actions Bar */}
                   <div style={{ display: 'flex', gap: '8px', borderTop: '1px solid #F1F5F9', paddingTop: '10px' }}>
                     {isUpcoming && (
                       <button
@@ -204,10 +290,43 @@ export const AppointmentsScreen = () => {
                       </button>
                     )}
 
+                    {isFollowUp && (
+                      <button
+                        onClick={() => openModal('new-appointment', { prefilledKidId: apt.kidId, reason: apt.symptoms[0] })}
+                        className="btn-primary"
+                        style={{ flex: 1, padding: '10px 14px', borderRadius: '14px', fontSize: '13px', fontWeight: '700' }}
+                      >
+                        <RefreshCw size={15} /> Book / Confirm Follow-up
+                      </button>
+                    )}
+
+                    {isCompleted && (
+                      <button
+                        onClick={() => openModal('new-appointment', { prefilledKidId: apt.kidId, reason: `Follow-up for ${apt.symptoms[0] || 'Previous Visit'}` })}
+                        style={{
+                          flex: 1,
+                          background: '#ECFDF5',
+                          border: '1px solid #A7F3D0',
+                          borderRadius: '14px',
+                          padding: '10px',
+                          color: '#047857',
+                          fontSize: '12px',
+                          fontWeight: '700',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '6px'
+                        }}
+                      >
+                        <RefreshCw size={13} /> Book Follow-up
+                      </button>
+                    )}
+
                     <button
                       onClick={() => openModal('appointment-detail', apt)}
                       style={{
-                        flex: isUpcoming ? 0.6 : 1,
+                        flex: isUpcoming || isFollowUp ? 0.6 : 0.8,
                         background: '#F1F5F9',
                         border: 'none',
                         borderRadius: '14px',

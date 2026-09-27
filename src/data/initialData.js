@@ -190,6 +190,48 @@ export const INITIAL_APPOINTMENTS = [
     prescriptionId: "rx-298"
   },
   {
+    id: "apt-105",
+    kidId: "kid-101",
+    kidName: "Reyansh Sharma",
+    doctor: "Dr. Ila B",
+    specialty: "Senior Pediatrician & Child Specialist",
+    hospital: "KidCare Wellness Center",
+    date: "2026-10-02",
+    time: "11:00 AM",
+    timestamp: "02 Oct 2026, 11:00 AM",
+    mode: "Online Video Consultation",
+    type: "FOLLOW-UP",
+    status: "Follow-up Due",
+    bookingCode: "KC-91823",
+    symptoms: ["Post-Viral Rhinopharyngitis Review", "Fever Resolution Check"],
+    notes: "Review lung sounds and check temperature chart 5 days post Calpol & Nasoclear course.",
+    doctorAvatar: "/assets/dr_ila_b.png",
+    linkedPrescriptionId: "rx-301",
+    followUpDueWindow: "Due within 4 days",
+    isDoctorRecommended: true
+  },
+  {
+    id: "apt-106",
+    kidId: "kid-102",
+    kidName: "Ananya Sharma",
+    doctor: "Dr. Ila B",
+    specialty: "Senior Pediatrician & Child Specialist",
+    hospital: "KidCare Pediatrics Clinic",
+    date: "2026-09-30",
+    time: "04:30 PM",
+    timestamp: "30 Sep 2026, 04:30 PM",
+    mode: "Walk-in",
+    type: "FOLLOW-UP",
+    status: "Follow-up Scheduled",
+    bookingCode: "KC-88401",
+    symptoms: ["Skin Rash & Allergy Recovery", "Weight Check"],
+    notes: "Skin barrier evaluation following antihistamine ointment therapy.",
+    doctorAvatar: "/assets/dr_ila_b.png",
+    linkedPrescriptionId: "rx-301",
+    followUpDueWindow: "Scheduled for Wednesday",
+    isDoctorRecommended: true
+  },
+  {
     id: "apt-104",
     kidId: "kid-101",
     kidName: "Reyansh Sharma",
@@ -509,67 +551,556 @@ export const INITIAL_PRESCRIPTIONS = [
   }
 ];
 
-export const NUTRITION_MEALS = [
-  {
-    id: "meal-1",
-    category: "Toddler (1-3 Years)",
-    timeSlot: "Breakfast (08:30 AM)",
-    title: "Warm Spiced Milk & Soft Scrambled Egg",
-    subtitle: "High protein & calcium powerhouse for morning brain development",
-    calories: "280 kcal",
-    protein: "11g",
-    carbs: "22g",
-    fats: "12g",
-    image: "/assets/fried_eggs.png",
-    milkImage: "/assets/glass_full_fresh_milk_1.png",
-    ingredients: ["1 pasture-raised egg", "120ml whole cow milk", "1 pinch turmeric", "1 tsp cow ghee", "1 slice whole-wheat toast"],
-    tips: "Ghee provides essential fat-soluble vitamins (A, D, E) crucial for early myelination."
-  },
-  {
-    id: "meal-2",
-    category: "Toddler (1-3 Years)",
-    timeSlot: "Lunch (12:45 PM)",
-    title: "Soft Steamed Rice with Yellow Moong Lentil Dal & Veggies",
-    subtitle: "Comforting, fiber-rich, and easily digestible staple meal",
-    calories: "340 kcal",
-    protein: "14g",
-    carbs: "52g",
-    fats: "8g",
-    image: "/assets/rice_bowl_1.png",
-    dalImage: "/assets/lentil_salad.png",
-    ingredients: ["1/2 cup cooked jasmine/sona masoori rice", "1/2 cup yellow moong dal with cumin tempering", "Steamed carrots & spinach puree", "1 tsp virgin olive oil or ghee"],
-    tips: "Combining rice and moong dal forms a complete amino acid protein profile."
-  },
-  {
-    id: "meal-3",
-    category: "Toddler (1-3 Years)",
-    timeSlot: "Evening Snack (04:30 PM)",
-    title: "Mashed Banana & Papaya Fruit Bowl with Chia Seeds",
-    subtitle: "Natural potassium, enzymes & prebiotic fiber for gut motility",
-    calories: "160 kcal",
-    protein: "3g",
-    carbs: "34g",
-    fats: "2g",
-    image: "/assets/bowl.png",
-    ingredients: ["1 small ripe elaichi banana", "1/4 cup cubed ripe papaya", "1/2 tsp soaked chia seeds"],
-    tips: "Papaya contains natural papain enzyme which prevents infant constipation."
-  },
-  {
-    id: "meal-4",
-    category: "Toddler (1-3 Years)",
-    timeSlot: "Dinner (07:30 PM)",
-    title: "Mild Vegetable Khichdi with Steamed Broccoli Florets",
-    subtitle: "Light, restful dinner promoting uninterrupted deep sleep",
-    calories: "290 kcal",
-    protein: "9g",
-    carbs: "44g",
-    fats: "7g",
-    image: "/assets/lunch.png",
-    babyImage: "/assets/sleeping_baby.png",
-    ingredients: ["1/2 cup organic rice-lentil porridge", "Steamed broccoli & sweet pumpkin", "Pinch of hing (asafoetida) for gas relief"],
-    tips: "Feed dinner at least 1.5 hours before bedtime to prevent acid reflux while sleeping."
-  }
-];
+export const WEEKLY_DIET_PLAN = {
+  "Monday": [
+    {
+      id: "mon-em",
+      mealType: "Early Morning",
+      timeSlot: "06:30 AM - 07:00 AM",
+      title: "Warm Spiced Milk & Soaked Almonds",
+      subtitle: "Brain hydration & morning enzyme activation",
+      calories: "140 kcal",
+      protein: "5g",
+      carbs: "12g",
+      fats: "7g",
+      image: "/assets/glass_full_fresh_milk_1.png",
+      foodItems: [
+        { item: "Warm Whole Cow Milk / Breast Milk", quantity: "120", unit: "ml" },
+        { item: "Soaked & Peeled Almonds Paste", quantity: "3", unit: "nuts" },
+        { item: "Pinch of Organic Turmeric", quantity: "1", unit: "pinch" }
+      ],
+      benefits: "Calcium & healthy fats for bone growth and neurological development.",
+      tips: "Serve lukewarm. Peeling almonds aids infant digestibility."
+    },
+    {
+      id: "mon-bf",
+      mealType: "Breakfast",
+      timeSlot: "08:30 AM - 09:00 AM",
+      title: "Sprouted Ragi Porridge with Ghee & Soft Banana",
+      subtitle: "Iron-rich, easily digestible morning fuel",
+      calories: "260 kcal",
+      protein: "7g",
+      carbs: "42g",
+      fats: "6g",
+      image: "/assets/bowl.png",
+      foodItems: [
+        { item: "Organic Sprouted Ragi Flour Porridge", quantity: "1", unit: "small bowl (100g)" },
+        { item: "Pure Cow Desi Ghee", quantity: "1", unit: "tsp" },
+        { item: "Mashed Elaichi Banana Slices", quantity: "1/2", unit: "banana" }
+      ],
+      benefits: "High calcium, natural iron, and complex carbs for sustained play energy.",
+      tips: "Cook ragi until glossy to ensure easy digestion."
+    },
+    {
+      id: "mon-lu",
+      mealType: "Lunch",
+      timeSlot: "12:45 PM - 01:30 PM",
+      title: "Yellow Moong Dal Khichdi with Steamed Carrots & Curd",
+      subtitle: "Complete protein profile with gut-friendly probiotics",
+      calories: "340 kcal",
+      protein: "14g",
+      carbs: "52g",
+      fats: "8g",
+      image: "/assets/rice_bowl_1.png",
+      foodItems: [
+        { item: "Soft Steamed Moong Dal & Rice Khichdi", quantity: "1", unit: "medium bowl (120g)" },
+        { item: "Steamed Carrot & Spinach Puree", quantity: "2", unit: "tbsp" },
+        { item: "Fresh Homemade Set Curd / Yogurt", quantity: "3", unit: "tbsp" },
+        { item: "Cumin & Ghee Tadka", quantity: "1/2", unit: "tsp" }
+      ],
+      benefits: "Moong dal + rice provides complete essential amino acids for tissue repair.",
+      tips: "Keep khichdi soft and semi-solid for toddler self-feeding."
+    },
+    {
+      id: "mon-dn",
+      mealType: "Dinner",
+      timeSlot: "07:30 PM - 08:15 PM",
+      title: "Soft Multigrain Phulka with Stewed Lauki (Bottle Gourd) & Paneer",
+      subtitle: "Light soothing dinner promoting deep uninterrupted sleep",
+      calories: "280 kcal",
+      protein: "10g",
+      carbs: "38g",
+      fats: "7g",
+      image: "/assets/lunch.png",
+      foodItems: [
+        { item: "Soft Wheat-Ragi Phulka mashed in dal", quantity: "1", unit: "piece" },
+        { item: "Mild Stewed Bottle Gourd & Pumpkin", quantity: "1/2", unit: "cup" },
+        { item: "Crumbled Fresh Malai Paneer", quantity: "20", unit: "grams" }
+      ],
+      benefits: "Tryptophan from paneer aids natural melatonin production for restful sleep.",
+      tips: "Feed at least 1.5 hours prior to bedtime."
+    }
+  ],
+  "Tuesday": [
+    {
+      id: "tue-em",
+      mealType: "Early Morning",
+      timeSlot: "06:30 AM - 07:00 AM",
+      title: "Warm Cardamom Milk with Munakka (Sweet Raisin) Puree",
+      subtitle: "Gentle natural gut motility & morning hydration",
+      calories: "135 kcal",
+      protein: "4.5g",
+      carbs: "16g",
+      fats: "6g",
+      image: "/assets/glass_full_fresh_milk_1.png",
+      foodItems: [
+        { item: "Warm Cow Milk", quantity: "120", unit: "ml" },
+        { item: "Soaked Munakka / Black Raisins Puree", quantity: "4", unit: "pieces" }
+      ],
+      benefits: "Prevents infant constipation and provides natural iron boost.",
+      tips: "Strain out raisin seeds before boiling with milk."
+    },
+    {
+      id: "tue-bf",
+      mealType: "Breakfast",
+      timeSlot: "08:30 AM - 09:00 AM",
+      title: "Soft Steamed Vegetable Idli with Mild Coconut Chutney",
+      subtitle: "Fermented probiotic powerhouse for toddler gut health",
+      calories: "240 kcal",
+      protein: "6g",
+      carbs: "45g",
+      fats: "4g",
+      image: "/assets/rice_bowl_1.png",
+      foodItems: [
+        { item: "Mini Soft Steamed Rice-Urad Idlis", quantity: "2", unit: "pieces" },
+        { item: "Steamed Grated Carrot & Beetroot Garnish", quantity: "1", unit: "tbsp" },
+        { item: "Mild Roasted Gram & Coconut Dip", quantity: "2", unit: "tsp" }
+      ],
+      benefits: "Fermentation enhances bioavailability of B-complex vitamins.",
+      tips: "Dip idli in warm milk or rasam for extra softness."
+    },
+    {
+      id: "tue-lu",
+      mealType: "Lunch",
+      timeSlot: "12:45 PM - 01:30 PM",
+      title: "Mashed Toor Dal Rice with Ghee & Pumpkin Puree",
+      subtitle: "Hearty, comforting protein & Vitamin A enrichment",
+      calories: "350 kcal",
+      protein: "13g",
+      carbs: "54g",
+      fats: "9g",
+      image: "/assets/lunch.png",
+      foodItems: [
+        { item: "Soft Boiled Sona Masoori Rice", quantity: "1/2", unit: "cup" },
+        { item: "Protein-rich Toor Lentil Dal", quantity: "1/2", unit: "cup" },
+        { item: "Yellow Sweet Pumpkin Mash", quantity: "2", unit: "tbsp" },
+        { item: "Desi Ghee Tempering with Hing", quantity: "1", unit: "tsp" }
+      ],
+      benefits: "Beta-carotene from pumpkin supports healthy eyesight and epithelial tissue.",
+      tips: "Hing (asafoetida) helps eliminate digestive gas."
+    },
+    {
+      id: "tue-dn",
+      mealType: "Dinner",
+      timeSlot: "07:30 PM - 08:15 PM",
+      title: "Moong Dal & Vegetable Dalia (Broken Wheat Porridge)",
+      subtitle: "Fiber-rich, easily digestible evening meal",
+      calories: "270 kcal",
+      protein: "9g",
+      carbs: "40g",
+      fats: "6g",
+      image: "/assets/bowl.png",
+      foodItems: [
+        { item: "Roasted Broken Wheat & Moong Dal Dalia", quantity: "1", unit: "small bowl (120g)" },
+        { item: "Finely Chopped Steamed Green Beans & Peas", quantity: "2", unit: "tbsp" },
+        { item: "A2 Cow Ghee Drop", quantity: "1/2", unit: "tsp" }
+      ],
+      benefits: "Whole fiber promotes smooth nighttime digestion.",
+      tips: "Pressure cook dalia until velvety soft."
+    }
+  ],
+  "Wednesday": [
+    {
+      id: "wed-em",
+      mealType: "Early Morning",
+      timeSlot: "06:30 AM - 07:00 AM",
+      title: "Warm Saffron Milk & Soaked Walnut Paste",
+      subtitle: "DHA & Omega-3 brain synapse nourishment",
+      calories: "150 kcal",
+      protein: "5g",
+      carbs: "11g",
+      fats: "8.5g",
+      image: "/assets/glass_full_fresh_milk_1.png",
+      foodItems: [
+        { item: "Warm Cow Milk", quantity: "120", unit: "ml" },
+        { item: "Soaked Walnut Kernel Paste", quantity: "2", unit: "halves" },
+        { item: "Kesar (Saffron) Strand", quantity: "1", unit: "strand" }
+      ],
+      benefits: "Plant ALA omega-3 fatty acids for cognitive speed and memory development.",
+      tips: "Soaking walnuts removes natural tannins."
+    },
+    {
+      id: "wed-bf",
+      mealType: "Breakfast",
+      timeSlot: "08:30 AM - 09:00 AM",
+      title: "Soft Scrambled Pasture Egg with Whole-Wheat Toast",
+      subtitle: "Choline & lutein powerhouse for rapid neural growth",
+      calories: "290 kcal",
+      protein: "12g",
+      carbs: "24g",
+      fats: "14g",
+      image: "/assets/fried_eggs.png",
+      foodItems: [
+        { item: "Pasture-Raised Egg (Soft Scrambled in Ghee)", quantity: "1", unit: "egg" },
+        { item: "Toasted Whole-Wheat Bread Fingers", quantity: "1", unit: "slice" },
+        { item: "Steamed Sweet Apple Puree", quantity: "2", unit: "tbsp" }
+      ],
+      benefits: "Egg yolk provides high dietary choline critical for hippocampus development.",
+      tips: "Cut toast into finger-sized strips for self-feeding practice."
+    },
+    {
+      id: "wed-lu",
+      mealType: "Lunch",
+      timeSlot: "12:45 PM - 01:30 PM",
+      title: "Masoor (Red Lentil) Vegetable Khichdi with Fresh Yogurt",
+      subtitle: "Bioavailable zinc, iron & gut friendly bacteria",
+      calories: "330 kcal",
+      protein: "14g",
+      carbs: "50g",
+      fats: "7g",
+      image: "/assets/lentil_salad.png",
+      foodItems: [
+        { item: "Skinless Red Masoor Dal & Rice Porridge", quantity: "1", unit: "bowl (120g)" },
+        { item: "Steamed Spinach & Zucchini Puree", quantity: "2", unit: "tbsp" },
+        { item: "Fresh Homemade Curd", quantity: "3", unit: "tbsp" }
+      ],
+      benefits: "Masoor dal is the quickest-digesting legume with high zinc for mucosal immunity.",
+      tips: "Add a dash of lemon juice to enhance non-heme iron absorption."
+    },
+    {
+      id: "wed-dn",
+      mealType: "Dinner",
+      timeSlot: "07:30 PM - 08:15 PM",
+      title: "Oats & Lentil Savory Porridge with Grated Paneer",
+      subtitle: "Slow-release carbs and calming magnesium for night sleep",
+      calories: "260 kcal",
+      protein: "10g",
+      carbs: "36g",
+      fats: "7g",
+      image: "/assets/sleeping_baby.png",
+      foodItems: [
+        { item: "Rolled Oats cooked in vegetable broth", quantity: "1", unit: "small bowl (100g)" },
+        { item: "Yellow Moong Dal Mash", quantity: "2", unit: "tbsp" },
+        { item: "Fresh Grated Cottage Cheese (Paneer)", quantity: "15", unit: "grams" }
+      ],
+      benefits: "Beta-glucan fiber from oats stabilizes blood sugar overnight.",
+      tips: "Keep consistency porridge-like."
+    }
+  ],
+  "Thursday": [
+    {
+      id: "thu-em",
+      mealType: "Early Morning",
+      timeSlot: "06:30 AM - 07:00 AM",
+      title: "Warm Turmeric Milk with Pureed Fig (Anjeer)",
+      subtitle: "Gentle morning mineral tonic",
+      calories: "140 kcal",
+      protein: "4.5g",
+      carbs: "17g",
+      fats: "6g",
+      image: "/assets/glass_full_fresh_milk_1.png",
+      foodItems: [
+        { item: "Warm Cow Milk", quantity: "120", unit: "ml" },
+        { item: "Soaked Dry Fig Paste", quantity: "1", unit: "fig" },
+        { item: "Turmeric Pinch", quantity: "1", unit: "pinch" }
+      ],
+      benefits: "Natural dietary fiber and potassium prevent colic and morning sluggishness.",
+      tips: "Boil soaked fig in milk for 2 minutes."
+    },
+    {
+      id: "thu-bf",
+      mealType: "Breakfast",
+      timeSlot: "08:30 AM - 09:00 AM",
+      title: "Vegetable Suji (Semolina) Upma with Ghee",
+      subtitle: "Light comforting morning breakfast with mixed vegetables",
+      calories: "250 kcal",
+      protein: "6g",
+      carbs: "44g",
+      fats: "6g",
+      image: "/assets/bowl.png",
+      foodItems: [
+        { item: "Roasted Semolina Vegetable Upma", quantity: "1", unit: "small bowl (100g)" },
+        { item: "Finely Diced Steamed Carrots & Peas", quantity: "2", unit: "tbsp" },
+        { item: "Desi Cow Ghee", quantity: "1", unit: "tsp" }
+      ],
+      benefits: "Quick digestible energy without taxing the toddler tummy.",
+      tips: "Keep vegetables finely chopped or grated to prevent choking hazard."
+    },
+    {
+      id: "thu-lu",
+      mealType: "Lunch",
+      timeSlot: "12:45 PM - 01:30 PM",
+      title: "Soft Curd Rice with Steamed Green Moong Sprouts & Beet Puree",
+      subtitle: "Cooling, probiotic rich midday feast",
+      calories: "320 kcal",
+      protein: "12g",
+      carbs: "50g",
+      fats: "7g",
+      image: "/assets/rice_bowl_1.png",
+      foodItems: [
+        { item: "Soft Mashed Rice with Fresh Curd", quantity: "1", unit: "cup" },
+        { item: "Steamed & Mashed Green Moong Sprouts", quantity: "2", unit: "tbsp" },
+        { item: "Roasted Cumin & Curry Leaf Infusion", quantity: "1/2", unit: "tsp" }
+      ],
+      benefits: "Live lactobacillus cultures promote optimal microbiome diversity.",
+      tips: "Serve at room temperature, not chilled from fridge."
+    },
+    {
+      id: "thu-dn",
+      mealType: "Dinner",
+      timeSlot: "07:30 PM - 08:15 PM",
+      title: "Soft Steamed Vegetable Rice Kheer / Porridge with Jaggery",
+      subtitle: "Comforting, warm dinner for cozy bedtime",
+      calories: "260 kcal",
+      protein: "6g",
+      carbs: "46g",
+      fats: "5g",
+      image: "/assets/lunch.png",
+      foodItems: [
+        { item: "Well-Cooked Soft Rice in Cow Milk", quantity: "1", unit: "bowl (100g)" },
+        { item: "Natural Organic Palm Jaggery", quantity: "1/2", unit: "tsp" },
+        { item: "Cardamom & Nutmeg Powder", quantity: "1", unit: "pinch" }
+      ],
+      benefits: "Nutmeg contains trace myristicin which relaxes nerves before sleep.",
+      tips: "Add jaggery only after cooling slightly to prevent milk curdling."
+    }
+  ],
+  "Friday": [
+    {
+      id: "fri-em",
+      mealType: "Early Morning",
+      timeSlot: "06:30 AM - 07:00 AM",
+      title: "Warm Almond Milk & Pureed Dates",
+      subtitle: "Natural morning energy boost and iron replenishment",
+      calories: "145 kcal",
+      protein: "4.8g",
+      carbs: "18g",
+      fats: "6.5g",
+      image: "/assets/glass_full_fresh_milk_1.png",
+      foodItems: [
+        { item: "Warm Cow Milk", quantity: "120", unit: "ml" },
+        { item: "Soft Seedless Medjool Date Puree", quantity: "1", unit: "date" }
+      ],
+      benefits: "Natural iron, potassium and magnesium.",
+      tips: "Dates provide unrefined natural sweetness."
+    },
+    {
+      id: "fri-bf",
+      mealType: "Breakfast",
+      timeSlot: "08:30 AM - 09:00 AM",
+      title: "Moong Dal Cheela (Pancake) with Paneer Mash",
+      subtitle: "Gluten-free, high-protein morning start",
+      calories: "270 kcal",
+      protein: "13g",
+      carbs: "32g",
+      fats: "9g",
+      image: "/assets/fried_eggs.png",
+      foodItems: [
+        { item: "Soft Yellow Moong Dal Savory Crepe", quantity: "1", unit: "small cheela" },
+        { item: "Fresh Mashed Soft Paneer Stuffing", quantity: "25", unit: "grams" },
+        { item: "Coriander & Mint Mild Dip", quantity: "1", unit: "tbsp" }
+      ],
+      benefits: "High plant protein and leucine for active muscle recovery.",
+      tips: "Cook on low flame with ghee until soft and tender."
+    },
+    {
+      id: "fri-lu",
+      mealType: "Lunch",
+      timeSlot: "12:45 PM - 01:30 PM",
+      title: "Steamed Rice with Mixed Vegetable Sambar & Ghee",
+      subtitle: "Drumstick, carrot & pumpkin lentil stew with rice",
+      calories: "340 kcal",
+      protein: "12g",
+      carbs: "54g",
+      fats: "8g",
+      image: "/assets/rice_bowl_1.png",
+      foodItems: [
+        { item: "Steamed Soft Jasmine Rice", quantity: "1/2", unit: "cup" },
+        { item: "Mild Pediatric Sambar (Toor Dal + Veggies)", quantity: "1/2", unit: "cup" },
+        { item: "Steamed Bottle Gourd Cubes", quantity: "2", unit: "tbsp" },
+        { item: "A2 Cow Ghee", quantity: "1", unit: "tsp" }
+      ],
+      benefits: "Rich variety of phytonutrients from 4 different vegetables.",
+      tips: "Strain out chili and whole spices before serving."
+    },
+    {
+      id: "fri-dn",
+      mealType: "Dinner",
+      timeSlot: "07:30 PM - 08:15 PM",
+      title: "Light Mixed Vegetable & Lentil Clear Soup with Soft Toast",
+      subtitle: "Hydrating, restorative pre-weekend dinner",
+      calories: "230 kcal",
+      protein: "8g",
+      carbs: "34g",
+      fats: "5g",
+      image: "/assets/sleeping_baby.png",
+      foodItems: [
+        { item: "Steamed Carrot, Spinach & Moong Dal Broth", quantity: "1", unit: "cup (150ml)" },
+        { item: "Whole Wheat Soft Toast Soldiers", quantity: "1", unit: "slice" },
+        { item: "Ghee Drop", quantity: "1/2", unit: "tsp" }
+      ],
+      benefits: "High hydration, electrolyte balance and easily assimilated vitamins.",
+      tips: "Blend soup smooth for younger toddlers."
+    }
+  ],
+  "Saturday": [
+    {
+      id: "sat-em",
+      mealType: "Early Morning",
+      timeSlot: "06:30 AM - 07:00 AM",
+      title: "Warm Milk with Soaked Cashew & Almond Powder",
+      subtitle: "Weekend nourishing boost for active playtime",
+      calories: "155 kcal",
+      protein: "5.5g",
+      carbs: "13g",
+      fats: "9g",
+      image: "/assets/glass_full_fresh_milk_1.png",
+      foodItems: [
+        { item: "Warm Cow Milk", quantity: "120", unit: "ml" },
+        { item: "Finely Ground Almond-Cashew Powder", quantity: "1", unit: "tsp" }
+      ],
+      benefits: "Magnesium, phosphorus and copper for bone mineralization.",
+      tips: "Ensure nuts are ground super-fine into flour."
+    },
+    {
+      id: "sat-bf",
+      mealType: "Breakfast",
+      timeSlot: "08:30 AM - 09:00 AM",
+      title: "Whole Wheat Banana Pancakes with Wild Honey Drizzle",
+      subtitle: "Wholesome, fun weekend finger food breakfast",
+      calories: "280 kcal",
+      protein: "7g",
+      carbs: "48g",
+      fats: "7g",
+      image: "/assets/bowl.png",
+      foodItems: [
+        { item: "Fluffy Whole Wheat & Ripe Banana Pancakes", quantity: "2", unit: "mini pieces" },
+        { item: "Pure Desi Ghee Cooked", quantity: "1", unit: "tsp" },
+        { item: "Few Drops Raw Forest Honey (Age 1+ Only)", quantity: "1/2", unit: "tsp" }
+      ],
+      benefits: "Potassium from bananas helps maintain intracellular fluid balance.",
+      tips: "Honey is strictly for toddlers above 12 months."
+    },
+    {
+      id: "sat-lu",
+      mealType: "Lunch",
+      timeSlot: "12:45 PM - 01:30 PM",
+      title: "Paneer & Pea Pulao with Cucumber Tadka Raita",
+      subtitle: "Festive, calcium-rich weekend family lunch",
+      calories: "360 kcal",
+      protein: "15g",
+      carbs: "50g",
+      fats: "10g",
+      image: "/assets/lunch.png",
+      foodItems: [
+        { item: "Mild Cumin Basmati Rice with Green Peas", quantity: "1/2", unit: "cup" },
+        { item: "Soft Sautéed Paneer Cubes", quantity: "30", unit: "grams" },
+        { item: "Grated Cucumber in Fresh Homemade Curd", quantity: "3", unit: "tbsp" }
+      ],
+      benefits: "Calcium from paneer and live cultures from raita support skeleton and gut.",
+      tips: "Soak paneer in warm water first for maximum pillow-softness."
+    },
+    {
+      id: "sat-dn",
+      mealType: "Dinner",
+      timeSlot: "07:30 PM - 08:15 PM",
+      title: "Steamed Moong Dal & Spinach Khichdi with Ghee",
+      subtitle: "Detoxifying and light evening meal after weekend activity",
+      calories: "280 kcal",
+      protein: "11g",
+      carbs: "42g",
+      fats: "7g",
+      image: "/assets/rice_bowl_1.png",
+      foodItems: [
+        { item: "Soft Spinach & Yellow Moong Khichdi", quantity: "1", unit: "bowl (120g)" },
+        { item: "Pure Cow Desi Ghee", quantity: "1", unit: "tsp" },
+        { item: "Pinch of Roasted Jeera (Cumin)", quantity: "1", unit: "pinch" }
+      ],
+      benefits: "Folate from spinach and clean carbs ensure restful weekend sleep.",
+      tips: "Puree spinach smoothly before cooking with lentils."
+    }
+  ],
+  "Sunday": [
+    {
+      id: "sun-em",
+      mealType: "Early Morning",
+      timeSlot: "06:30 AM - 07:00 AM",
+      title: "Warm Saffron & Cardamom Cow Milk",
+      subtitle: "Gentle aromatic awakening & digestive soothing",
+      calories: "135 kcal",
+      protein: "4.5g",
+      carbs: "12g",
+      fats: "6g",
+      image: "/assets/glass_full_fresh_milk_1.png",
+      foodItems: [
+        { item: "Warm Whole Cow Milk", quantity: "120", unit: "ml" },
+        { item: "Crushed Cardamom & Saffron", quantity: "1", unit: "pinch" }
+      ],
+      benefits: "Cardamom stimulates saliva and digestive secretions.",
+      tips: "Serve cozy and warm."
+    },
+    {
+      id: "sun-bf",
+      mealType: "Breakfast",
+      timeSlot: "08:30 AM - 09:00 AM",
+      title: "Soft Vegetable Poha (Flattened Rice) with Steamed Peas & Ghee",
+      subtitle: "Iron-fortified traditional Sunday breakfast",
+      calories: "250 kcal",
+      protein: "6g",
+      carbs: "46g",
+      fats: "5.5g",
+      image: "/assets/fried_eggs.png",
+      foodItems: [
+        { item: "Soft Steamed Thick Poha with Turmeric", quantity: "1", unit: "bowl (100g)" },
+        { item: "Steamed Sweet Green Peas & Potato Mash", quantity: "2", unit: "tbsp" },
+        { item: "Fresh Lemon Juice & Coriander Squeeze", quantity: "1/2", unit: "tsp" }
+      ],
+      benefits: "Flattened rice is naturally iron-rich; lemon juice vitamin C boosts absorption.",
+      tips: "Rinse poha gently and let rest for 5 minutes so it turns extra soft."
+    },
+    {
+      id: "sun-lu",
+      mealType: "Lunch",
+      timeSlot: "12:45 PM - 01:30 PM",
+      title: "Soft Chicken Broth with Rice (or Paneer Lentil Rice for Veg)",
+      subtitle: "Sunday high-protein restorative family meal",
+      calories: "350 kcal",
+      protein: "16g",
+      carbs: "48g",
+      fats: "9g",
+      image: "/assets/rice_bowl_1.png",
+      foodItems: [
+        { item: "Shredded Tender Chicken in Bone Broth / Soft Paneer", quantity: "40", unit: "grams" },
+        { item: "Steamed White Jasmine Rice", quantity: "1/2", unit: "cup" },
+        { item: "Steamed Carrot & Sweet Corn Puree", quantity: "2", unit: "tbsp" },
+        { item: "Desi Ghee", quantity: "1", unit: "tsp" }
+      ],
+      benefits: "Collagen, zinc and amino acids support gut lining and immune defense.",
+      tips: "Ensure chicken is pressure-cooked until completely shreddable."
+    },
+    {
+      id: "sun-dn",
+      mealType: "Dinner",
+      timeSlot: "07:30 PM - 08:15 PM",
+      title: "Mild Pumpkin & Apple Porridge with A2 Ghee",
+      subtitle: "Soothing Sunday evening digestive rest meal",
+      calories: "240 kcal",
+      protein: "5g",
+      carbs: "42g",
+      fats: "5g",
+      image: "/assets/lunch.png",
+      foodItems: [
+        { item: "Steamed Red Pumpkin & Fuji Apple Mash", quantity: "1", unit: "cup" },
+        { item: "Roasted Rice Flour Base", quantity: "2", unit: "tbsp" },
+        { item: "Pure Cow Ghee", quantity: "1/2", unit: "tsp" }
+      ],
+      benefits: "Gentle on the stomach to prepare for the active preschool week ahead.",
+      tips: "Feed at 07:30 PM for a restful night."
+    }
+  ]
+};
+
+export const NUTRITION_MEALS = WEEKLY_DIET_PLAN["Monday"];
 
 export const HEALTH_FEEDS = [
   {
