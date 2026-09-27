@@ -166,7 +166,7 @@ export const NewAppointmentModal = () => {
                 </div>
 
                 <div
-                  onClick={() => setConsultMode('In-Clinic Hospital Visit')}
+                  onClick={() => setConsultMode('Walk-in')}
                   style={{
                     padding: '14px',
                     borderRadius: '16px',
@@ -183,7 +183,7 @@ export const NewAppointmentModal = () => {
                       <MapPin size={20} />
                     </div>
                     <div>
-                      <h5 style={{ fontSize: '14px', fontWeight: '800', color: '#012741' }}>In-Clinic Visit</h5>
+                      <h5 style={{ fontSize: '14px', fontWeight: '800', color: '#012741' }}>Walk-in</h5>
                       <p style={{ fontSize: '11.5px', color: '#64748B' }}>KidCare Pediatrics Hospital, Center Clinic</p>
                     </div>
                   </div>

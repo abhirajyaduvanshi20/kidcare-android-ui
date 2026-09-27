@@ -124,7 +124,7 @@ export const AppointmentDetailModal = () => {
                 className="btn-green"
                 style={{ width: '100%', padding: '14px', borderRadius: '16px', fontWeight: '800' }}
               >
-                <Video size={18} /> Join Live Video Consultation
+                <Video size={18} /> Join Tele Consultation
               </button>
             )}
 

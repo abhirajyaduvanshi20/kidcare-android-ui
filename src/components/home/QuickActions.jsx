@@ -44,7 +44,7 @@ export const QuickActions = () => {
     {
       id: 'appointment',
       title: 'Consult Doctor',
-      subtitle: 'Dr. Ila B (Video/Clinic)',
+      subtitle: 'Dr. Ila B (Tele / Walk-in)',
       badge: 'Instant Book',
       badgeColor: '#F6ECFB',
       badgeTextColor: '#8E2DE2',

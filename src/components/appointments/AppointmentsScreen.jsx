@@ -170,7 +170,7 @@ export const AppointmentsScreen = () => {
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#64748B' }}>
                       {apt.mode.includes('Video') ? <Video size={14} color="#53BF9D" /> : <MapPin size={14} color="#F7931E" />}
-                      <span>{apt.mode.includes('Video') ? 'Online Video' : 'In-Clinic'}</span>
+                      <span>{apt.mode.includes('Video') || apt.mode.includes('Tele') ? 'Tele Consultation' : 'Walk-in'}</span>
                     </div>
                   </div>
 
@@ -200,7 +200,7 @@ export const AppointmentsScreen = () => {
                         className="btn-green"
                         style={{ flex: 1, padding: '10px 14px', borderRadius: '14px', fontSize: '13px', fontWeight: '700' }}
                       >
-                        <Video size={16} /> Join Video Call
+                        <Video size={16} /> Join Tele Consultation
                       </button>
                     )}
 

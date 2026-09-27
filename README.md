@@ -58,7 +58,7 @@ Visit: `http://127.0.0.1:5173/` or `http://localhost:5173/`
 ### 2. 📅 Doctor Appointments & Consultations (`AppointmentsNavGraph.kt`)
 - **Filter Tabs**: *Upcoming*, *Completed*, *Cancelled*.
 - **4-Step Booking Wizard**:
-  - Step 1: Select Child & Mode (*Online Video Consultation* or *In-Clinic Visit*).
+  - Step 1: Select Child & Mode (*Online Video Consultation* or *Walk-in*).
   - Step 2: Interactive Symptom Selector (*Fever, Cough, Rash, Appetite Loss, Ear Pain, Teething, etc.*).
   - Step 3: Available Date & Doctor Slot Picker (Morning, Afternoon, Evening).
   - Step 4: Token generation, booking confirmation, and pre-checkup guidelines.

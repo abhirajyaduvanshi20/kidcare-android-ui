@@ -76,7 +76,7 @@ export const LiveConsultationModal = () => {
           <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#F94C66', animation: 'pulseGlow 1.5s infinite' }} />
           <div>
             <h4 style={{ fontSize: '15px', fontWeight: '800' }}>Dr. Ila B (Pediatrician)</h4>
-            <p style={{ fontSize: '11px', color: '#53BF9D', fontWeight: '600' }}>Live Video Consultation • {formatDuration(callDuration)}</p>
+            <p style={{ fontSize: '11px', color: '#53BF9D', fontWeight: '600' }}>Live Tele Consultation • {formatDuration(callDuration)}</p>
           </div>
         </div>
 
@@ -283,7 +283,7 @@ export const LiveConsultationModal = () => {
             cursor: 'pointer',
             boxShadow: '0 8px 24px rgba(249, 76, 102, 0.45)'
           }}
-          title="End Video Consultation"
+          title="End Tele Consultation"
         >
           <PhoneOff size={28} />
         </button>

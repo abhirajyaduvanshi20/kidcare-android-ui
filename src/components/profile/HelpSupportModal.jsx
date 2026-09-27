@@ -96,7 +96,7 @@ export const HelpSupportModal = () => {
                 <div>
                   <input
                     type="text"
-                    placeholder="Subject (e.g. Video call audio issue, Vaccination record update)"
+                    placeholder="Subject (e.g. Tele consultation audio issue, Vaccination record update)"
                     value={ticketSubject}
                     onChange={(e) => setTicketSubject(e.target.value)}
                     required
